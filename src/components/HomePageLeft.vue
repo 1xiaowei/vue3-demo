@@ -1,6 +1,6 @@
 <template>
-    　<v-card class="mx-auto" max-width="300">
-        <v-list class="mx-auto" :items="items"></v-list>
+    　<v-card color="#00529F" class="mx-auto" max-width="300">
+        <v-list  class="mx-auto" :items="items" ></v-list>
     </v-card>
 </template>
   
@@ -21,11 +21,5 @@ export default {
 }
 </script>
 <style>
-.menus{
-    background-color: #00529F;
-}
-.mx-auto{
-    background-color: #00529F;
-}
 </style>
   

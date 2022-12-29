@@ -1,12 +1,14 @@
 <template>
-  <v-navigation-drawer class="menus">
-      <home-page-left
-      />
-    </v-navigation-drawer>
-    <v-container class="right-style">
-      <home-page-right
-      />
-    </v-container>
+  <v-navigation-drawer v-if="isShow" color="#00529F" class="menus">
+    <home-page-left />
+  </v-navigation-drawer>
+  <v-navigation-drawer width="20px" color="#08009f" class="menus">
+    <v-btn v-if="isShow" @click="menuShow" color="#08009f" elevation="2" x-small>◀</v-btn>
+    <v-btn v-if="!isShow" @click="menuShow" color="#08009f" elevation="2" x-small>▶</v-btn>
+  </v-navigation-drawer>
+  <v-container class="right-style">
+    <home-page-right />
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -15,7 +17,7 @@ import { defineComponent } from 'vue';
 // Components
 // import HelloWorld from '../components/HelloWorld.vue'
 import HomePageLeft from '../components/HomePageLeft.vue'
-// import HomePageRight from "../components/HomePageRight.vue";
+import HomePageRight from "../components/HomePageRight.vue";
 
 export default defineComponent({
   name: 'HomeView',
@@ -23,12 +25,19 @@ export default defineComponent({
   components: {
     // HelloWorld,
     HomePageLeft,
-    // HomePageRight,
+    HomePageRight,
   },
+  data: () => ({
+    isShow: true,
+  }),
+  methods: {
+    menuShow: function () {
+      this.isShow = !this.isShow;
+      return this.isShow;
+    }
+  }
 });
 </script>
 <style>
-.menus{
-  background-color: #00529F;
-}
+
 </style>

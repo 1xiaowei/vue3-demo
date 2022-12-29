@@ -1,0 +1,55 @@
+[
+    {
+        "notice_type":1,
+        "notice_date":"2022/12/28",
+        "notice_title":"xxxxxxx",
+        "notice_content":"2022年12月31日 14:00～2023年1月2日 12:00までメンテナンスの為システムの利用が行えません。利用者の方はご注意ください。"
+    },
+    {
+        "notice_type":1,
+        "notice_date":"2022/12/28",
+        "notice_title":"yyyyyyyyyy",
+        "notice_content":"2022年12月31日 14:00～2023年1月2日 12:00までメンテナンスの為システムの利用が行えません。利用者の方はご注意ください。"
+    },
+    {
+        "notice_type":1,
+        "notice_date":"2022/12/28",
+        "notice_title":"zzzzzzzzzzzz",
+        "notice_content":"2022年12月31日 14:00～2023年1月2日 12:00までメンテナンスの為システムの利用が行えません。利用者の方はご注意ください。"
+    },
+    {
+        "notice_type":2,
+        "notice_date":"2022/11/22",
+        "notice_correspoding_date":"2022/11/30",
+        "notice_title":"ユーザーXXからxxxの承認依頼が来ています",
+        "notice_content":"ユーザーXXからxxxの承認依頼が来ています、ご注意ください"
+    },
+    {
+        "notice_type":2,
+        "notice_date":"2022/11/22",
+        "notice_correspoding_date":"2022/11/30",
+        "notice_title":"ユーザーYYからxxxの承認依頼が来ています",
+        "notice_content":"ユーザーYYからxxxの承認依頼が来ています、ご注意ください"
+    },
+    {
+        "notice_type":2,
+        "notice_date":"2022/11/22",
+        "notice_correspoding_date":"2022/11/30",
+        "notice_title":"ユーザーZZからxxxの承認依頼が来ています",
+        "notice_content":"ユーザーZZからxxxの承認依頼が来ています、ご注意ください"
+    },
+    {
+        "notice_type":2,
+        "notice_date":"2022/11/22",
+        "notice_correspoding_date":"2022/11/30",
+        "notice_title":"ユーザーAAからxxxの承認依頼が来ています",
+        "notice_content":"ユーザーAAからxxxの承認依頼が来ています、ご注意ください"
+    },
+    {
+        "notice_type":2,
+        "notice_date":"2022/11/18",
+        "notice_correspoding_date":"2022/11/30",
+        "notice_title":"xxxの入力を行ってください",
+        "notice_content":"xxxの入力を行ってください、ご注意ください"
+    }
+]
