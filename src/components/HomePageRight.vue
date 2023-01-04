@@ -7,10 +7,7 @@
             </v-card>
         </div>
     </div>
-    <div>
-
-    </div>
-    <div>
+    <div v-if="menuSelect===1">
         <v-card class="mx-auto" max-width="800" style="height:15.5rem">
             <v-toolbar color="cyan-lighten-1">
                 <v-toolbar-title>運営からの通知( {{ announce.length }} 件)</v-toolbar-title>
@@ -21,18 +18,18 @@
                     <v-col>
                         <v-dialog transition="dialog-top-transition">
                             <template v-slot:activator="{ props }">
-                                <v-data-table style="border: 1">
+                                <thead>
                                     <tr>
-                                        <td style="width:30%">通知日</td>
-                                        <td style="width:60%">概要</td>
-                                        <td style="width:10%">確認</td>
+                                        <th style="width:30%">通知日</th>
+                                        <th style="width:60%">概要</th>
+                                        <th style="width:10%">確認</th>
                                     </tr>
                                     <tr v-for="item in announce">
-                                        <td>{{ item.notification_date }}</td>
-                                        <td> ・{{ item.title_text }}</td>
-                                        <td><v-btn v-bind="props" color="#00529F"> 確認</v-btn></td>
+                                        <td style="width:30%">{{ item.notification_date }}</td>
+                                        <td style="width:60%"> ・{{ item.title_text }}</td>
+                                        <td style="width:10%" ><v-btn v-bind="props" color="#00529F"> 確認</v-btn></td>
                                     </tr>
-                                </v-data-table>
+                                </thead>
                             </template>
                             <template v-slot:default="{ isActive }">
                                             <v-card style="width:50%;height:30%;margin:auto">
@@ -54,7 +51,7 @@
         </v-card>
         <v-card class="mx-auto" max-width="800" style="height:20rem">
             <v-toolbar color="cyan-lighten-1">
-                <v-toolbar-title>通知一覧</v-toolbar-title>
+                <v-toolbar-title>通知一覧( {{ nortification.length }} 件)</v-toolbar-title>
                 <v-spacer></v-spacer>
             </v-toolbar>
             <div style="height:24rem">
@@ -62,20 +59,20 @@
                     <v-col>
                         <v-dialog transition="dialog-top-transition">
                             <template v-slot:activator="{ props }">
-                                <v-data-table style="border: 1;">
+                                <thead>
                                     <tr>
-                                        <td style="width:20%">通知日</td>
-                                        <td style="width:20%">対応期限</td>
-                                        <td style="width:50%">概要</td>
-                                        <td style="width:10%">確認</td>
+                                        <th style="width:25%">通知日</th>
+                                        <th style="width:25%">対応期限</th>
+                                        <th style="width:40%">概要</th>
+                                        <th style="width:10%">確認</th>
                                     </tr>
                                     <tr v-for="item in nortification">
-                                        <td>{{ item.notification_date }}</td>
-                                        <td>{{ item.due_date }}</td>
-                                        <td> ・{{ item.title_text }}</td>
-                                        <td><v-btn v-bind="props" color="#00529F"> 確認</v-btn></td>
+                                        <td style="width:25%">{{ item.notification_date }}</td>
+                                        <td style="width:25%">{{ item.due_date }}</td>
+                                        <td style="width:40%"> ・{{ item.title_text }}</td>
+                                        <td style="width:10%"><v-btn v-bind="props" color="#00529F"> 確認</v-btn></td>
                                     </tr>
-                                </v-data-table>
+                                </thead>
                             </template>
                             <template v-slot:default="{ isActive }">
                                 <v-card style="width:50%;height:30%;margin:auto">
@@ -95,9 +92,13 @@
             </div>
         </v-card>
     </div>
+    <div v-if="menuSelect===2">
+        <user/>
+    </div>
 </template>
 <script lang="ts">
 import axios from 'axios'
+import User from "../components/Uesr.vue"
 export default {
     name: 'HomePageRight',
     data() {
@@ -105,6 +106,13 @@ export default {
             announce: [] as any,
             nortification: [] as any
         }
+    },
+    components:{
+       User,
+    },
+        props:{
+      menuSelect:Number,
+      pageContent:Object
     },
     created() {
         this.getAnnounces();
