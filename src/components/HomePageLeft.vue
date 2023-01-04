@@ -1,5 +1,5 @@
 <template>
-    　<v-card color="#00529F" class="mx-auto" max-width="300">
+    　<v-card style="max-width=300;" color='#00529F' class="mx-auto">
         <v-list  class="mx-auto">
         <v-list-item value="1" @click="menusClick(1)">TOP</v-list-item>
         <v-list-item value="2" @click="menusClick(2)">ユーザー一覧</v-list-item>
@@ -24,5 +24,6 @@ export default {
 }
 </script>
 <style>
+
 </style>
   
