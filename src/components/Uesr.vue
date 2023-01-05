@@ -27,9 +27,20 @@
                 </v-table>
             </template>
         </v-dialog>
-        <div class="text-center">
-            <v-pagination v-if="Math.ceil(totalPage / limit) > 1" class="pagination" v-model="curPage"
-                :length="Math.ceil(totalPage / limit)" total-visible="7" @input="next(curPage)"></v-pagination>
+        <div class="d-flex align-center justify-end text-center pt-2">
+            <div class="d-flex">
+                <span class="page_num_text">每页</span>
+                <v-select class="search_itemsPerPage mx-1" v-model="itemsPerPage" :items="numbers" outlined @change="">
+                    <template class="search_item" #item="{ item }">
+                        <p>{{ item }}</p>
+                    </template>
+                </v-select>
+                <span class="page_num_text">条记录</span>
+            </div>
+            <div class="text-center">
+                <v-pagination v-if="Math.ceil(totalPage / itemsPerPage) > 1" class="pagination"  @next="right" @prev="left"
+                    :length="Math.ceil(totalPage / itemsPerPage)" total-visible="7" :model-value="curPage"></v-pagination>
+            </div>
         </div>
     </div>
 </template>
@@ -42,30 +53,28 @@ export default {
         return {
             user: [] as any,
             curPage: 1,
-            limit: 10,
             totalPage: 0,
-            list: []
-            // headers: [
-            //     {
-            //         text: 'ユーザーNo',
-            //         align: 'start',
-            //         sortable: false,
-            //         value: 'user_id',
-            //     },
-            //     { text: '名前', value: 'user_name' },
-            //     { text: '読み仮名', value: 'user_name_kana' },
-            //     { text: '所属', value: 'user_department' },
-            //     { text: '役職', value: 'user_position' },
-            //     { text: '権限', value: 'user_permissions' },
-            // ],
-            // desserts: []
+            list: [],
+            itemsPerPage: 10,
+            numbers: [10, 25, 50, 100],
         };
     },
     created() {
         this.getUsers();
-        // this.getData();
     },
     methods: {
+        right(){
+            this.curPage++
+            this.getUsers()
+        },
+        left(){
+            this.curPage--
+            this.getUsers()
+        },
+        update(val: any){
+             this.curPage=val
+             this.getUsers()
+        },
         getUsers: function () {
             const vm = this;
             axios.get("/data/user.json")
@@ -74,7 +83,7 @@ export default {
                     let results = response.data || [];
                     if (results && results.length > 0) {
                         this.totalPage = results.length;
-                        vm.user = results.slice((this.curPage-1)*this.limit,this.curPage*this.limit);
+                        vm.user = results.slice((this.curPage - 1) * this.itemsPerPage, this.curPage * this.itemsPerPage);
                         console.log(vm.user)
                     }
                 }).catch(function (error) {
@@ -82,20 +91,10 @@ export default {
                     vm.user = [];
                 })
         },
-        next : function(curPage:any){
-            this.curPage=curPage
+        next: function (curPage: any) {
+            this.curPage = curPage
+            this.getUsers
         }
-        // getData: function () {
-        //     const vm = this;
-        //     axios.get("/data/user.json").then(
-        //         response => {
-        //             console.log(response.data);
-        //             vm.desserts = response.data;
-        //         },
-        //         error => {
-        //             console.log(error);
-        //         }
-        //     );
     }
 }
 
