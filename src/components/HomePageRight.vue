@@ -25,8 +25,8 @@
                                         <th style="width:10%">確認</th>
                                     </tr>
                                 </thead>
-                                <tbody class="text-center">
-                                    <tr v-for="item in announce">
+                                <tbody class="text-center" v-for="item in announce">
+                                    <tr>
                                         <td style="width:30%">{{ item.notification_date }}</td>
                                         <td style="width:60%"> ・{{ item.title_text }}</td>
                                         <td style="width:10%"><v-btn v-bind="props" color="#00529F"> 確認</v-btn></td>
