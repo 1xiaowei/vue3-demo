@@ -1,12 +1,4 @@
 <template>
-    <div class="header" style="height: 40px;">
-        <div class="">
-            <p></p>
-            <v-card color="#009f55" class="mx-auto" width="800">
-                <v-btn color="#009f55">通知一覧画面</v-btn>
-            </v-card>
-        </div>
-    </div>
     <div v-if="menuSelect === 1">
         <v-card class="mx-auto" max-width="800" style="height:15.5rem">
             <v-toolbar color="cyan-lighten-1">
