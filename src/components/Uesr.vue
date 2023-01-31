@@ -1,9 +1,9 @@
 <template>
     <div>
         <v-dialog transition="dialog-top-transition">
-            <template v-slot:activator="{ props }">
+            <template v-slot:activator="{ on }">
                 <!-- プレーンテーブルでコンテンツを表示する -->
-                <v-table class="text-center">
+                <v-table class="text-center" height="550px" fixed-header>
                     <thead>
                         <tr color="#00529F">
                             <th class="text-left" style="width:15%">ユーザーNo</th>
@@ -39,8 +39,9 @@
 
 
             <div class="text-center">
-                <v-pagination v-if="Math.ceil(totalPage / itemsPerPage) > 1" class="pagination" @update:model-value="updatePage" :length="Math.ceil(totalPage / itemsPerPage)"
-                    total-visible="7" :model-value="curPage"></v-pagination>
+                <v-pagination v-if="Math.ceil(totalPage / itemsPerPage) > 1" class="pagination"
+                    @update:model-value="updatePage" :length="Math.ceil(totalPage / itemsPerPage)" total-visible="7"
+                    :model-value="curPage"></v-pagination>
             </div>
         </div>
     </div>
@@ -68,10 +69,10 @@ export default {
     },
     watch: {//ページング機能の監視
         itemsPerPage: [
-      'getUsers',
-      function handle2(val, oldVal) {
-      }
-    ]
+            'getUsers',
+            function handle2(val, oldVal) {
+            }
+        ]
     },
     methods: {
         updatePage: function (pageIndex: any) {//クリックされたページ番号
@@ -79,7 +80,7 @@ export default {
             this.getUsers()
         },
         logsel(itemsPerPage: number) {
-            this.itemsPerPage=itemsPerPage
+            this.itemsPerPage = itemsPerPage
             this.updatePage
         },
         getUsers: function () {//データを読む
@@ -90,8 +91,8 @@ export default {
                     let results = response.data || [];
                     if (results && results.length > 0) {
                         this.totalPage = results.length;
-                        if(this.totalPage/this.itemsPerPage<this.curPage){
-                            this.curPage=this.totalPage/this.itemsPerPage
+                        if (this.totalPage / this.itemsPerPage < this.curPage) {
+                            this.curPage = this.totalPage / this.itemsPerPage
                         }
                         vm.user = results.slice((this.curPage - 1) * this.itemsPerPage, this.curPage * this.itemsPerPage);
                         console.log(vm.user)
@@ -101,7 +102,7 @@ export default {
                     vm.user = [];
                 })
         },
-        
+
     }
 }
 
